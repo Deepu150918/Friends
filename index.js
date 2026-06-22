@@ -6,7 +6,20 @@ const user = createInterface({
     output: process.stdout
 });
 
-const value = await user.question("Enter your name : ");
-console.log(value);
 
-user.close();
+const verifyAge = async () => {
+    const value = await user.question("Enter your name : ");
+    const age = +value;
+    if (Number.isNaN(age)) {
+        throw new Error("Invalid Input Given!!");
+    }
+    if (age >= 18) {
+        console.log("Welcome User!!");
+    } else {
+        console.log("Sorry User your age is not fullfiled by us!");
+
+    }
+    user.close();
+}
+
+verifyAge();
